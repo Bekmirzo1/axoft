@@ -19,104 +19,36 @@ if (sliders) {
             slider.innerHTML = '';
             slider.appendChild(slider_wrapper);
             slider.classList.add('swiper-bild');
-
-            if (slider.classList.contains('_swiper_scroll')) {
-                let sliderScroll = document.createElement('div');
-                sliderScroll.classList.add('swiper-scrollbar');
-                slider.appendChild(sliderScroll);
-            }
-        }
-        if (slider.classList.contains('_gallery')) {
-            //slider.data('lightGallery').destroy(true);
         }
     }
 }
 
 
-function sliders_bild_callback(params) { }
-
 if (document.querySelector('.slider-about__body')) {
     new Swiper('.slider-about__body', {
-        // effect: 'fade',
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
         observer: true,
         observeParents: true,
         slidesPerView: 'auto',
         spaceBetween: 0,
-        // autoHeight: true,
         speed: 800,
-        //touchRatio: 0,
-        //simulateTouch: false,
-        //loop: true,
-        //preloadImages: false,
-        //lazy: true,
-        // Dotts
-        //pagination: {
-        //	el: '.slider-quality__pagging',
-        //	clickable: true,
-        //},
         // Arrows
         navigation: {
             nextEl: '.slider-about__navigation .slider-arrow_right',
             prevEl: '.slider-about__navigation .slider-arrow_left',
         },
-        /*
-        breakpoints: {
-            320: {
-                slidesPerView: 1,
-                spaceBetween: 0,
-                autoHeight: true,
-            },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-            },
-            992: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-            },
-            1268: {
-                slidesPerView: 4,
-                spaceBetween: 30,
-            },
-        },
-        */
-        // on: {
-        //     lazyImageReady: function () {
-        //         ibg();
-        //     },
-        // }
-        // And if we need scrollbar
-        //scrollbar: {
-        //	el: '.swiper-scrollbar',
-        //},
     });
 }
 if (document.querySelector('.special-tabs-slider__body')) {
     const swiperSpecial = new Swiper('.special-tabs-slider__body', {
-        // effect: 'fade',
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
         observer: true,
         observeParents: true,
         spaceBetween: 1,
         watchOverflow: false,
-        // autoHeight: true,
         speed: 600,
         grid: {
             rows: 3,
             fill: 'column'
         },
-        //touchRatio: 0,
-        //simulateTouch: false,
-        //loop: true,
-        //preloadImages: false,
-        //lazy: true,
         // Dotts
         pagination: {
             el: '.special-tabs-slider__bullets',
@@ -130,37 +62,6 @@ if (document.querySelector('.special-tabs-slider__body')) {
             nextEl: '.special-tabs-slider__navigation .slider-arrow_right',
             prevEl: '.special-tabs-slider__navigation .slider-arrow_left',
         },
-        // breakpoints: {
-        //     0: {
-        //         slidesPerGroup: 1,
-        //         slidesPerView: 1,
-        //     },
-        //     480: {
-        //         slidesPerGroup: 2,
-        //         slidesPerView: 2,
-        //     }
-        // },
-        /*
-        breakpoints: {
-            320: {
-                slidesPerView: 1,
-                spaceBetween: 0,
-                autoHeight: true,
-            },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-            },
-            992: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-            },
-            1268: {
-                slidesPerView: 4,
-                spaceBetween: 30,
-            },
-        },
-        */
         init: false,
         on: {
             beforeResize: function () {
@@ -170,26 +71,16 @@ if (document.querySelector('.special-tabs-slider__body')) {
                 sliderSpecialChange();
             }
         }
-        // And if we need scrollbar
-        //scrollbar: {
-        //	el: '.swiper-scrollbar',
-        //},
     });
     function sliderSpecialChange() {
-        // // const specialMedia = window.matchMedia('(max-width: 479.98px)');
         if (window.innerWidth < 480) {
-            // swiperSpecial.params.grid.rows = 3;
             swiperSpecial.params.slidesPerGroup = 1;
             swiperSpecial.params.slidesPerView = 1;
         } else {
             swiperSpecial.params.slidesPerGroup = 2;
             swiperSpecial.params.slidesPerView = 2;
         }
-        // console.log('ddd');
     }
-    // const specialMedia = window.matchMedia('(max-width: 479.98px)');
-    // specialMedia.addListener(sliderChange);
-    // sliderChange(specialMedia);
     swiperSpecial.init();
 }
 
@@ -212,16 +103,7 @@ testWebP(function (support) {
     }
 });
 
-window.addEventListener("load", function () {
-    if (document.querySelector('.wrapper')) {
-        setTimeout(function () {
-            document.querySelector('.wrapper').classList.add('_loaded');
-        }, 0);
-    }
-});
 
-
-let unlock = true;
 // *iconMenu
 const wrapper = document.querySelector('.wrapper');
 let aside = document.querySelector('.aside');
@@ -264,14 +146,6 @@ if (iconMenu) {
     }
     changeIcon();
 }
-// document.addEventListener('click', function (e) {
-//     if (!iconMenu.classList.contains('_active')) {
-//         if (!e.target.closest('.aside') || !e.target.classList.contains('aside')) {
-//             // menu_close();
-//         }
-//         console.log('ddd');
-//     }
-// });
 // Menu close
 function menu_close() {
     iconMenu.classList.remove("_active");
@@ -283,50 +157,6 @@ function menu_close() {
 }
 
 // *BodyLock
-function body_lock(delay) {
-    let body = document.querySelector("body");
-    if (body.classList.contains('_lock')) {
-        body_lock_remove(delay);
-    } else {
-        body_lock_add(delay);
-    }
-}
-function body_lock_remove(delay) {
-    let body = document.querySelector("body");
-    if (unlock) {
-        let lock_padding = document.querySelectorAll("._lp");
-        setTimeout(() => {
-            for (let index = 0; index < lock_padding.length; index++) {
-                const el = lock_padding[index];
-                el.style.paddingRight = '0px';
-            }
-            body.style.paddingRight = '0px';
-            body.classList.remove("_lock");
-        }, delay);
-
-        unlock = false;
-        setTimeout(function () {
-            unlock = true;
-        }, delay);
-    }
-}
-function body_lock_add(delay) {
-    let body = document.querySelector("body");
-    if (unlock) {
-        let lock_padding = document.querySelectorAll("._lp");
-        for (let index = 0; index < lock_padding.length; index++) {
-            const el = lock_padding[index];
-            el.style.paddingRight = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
-        }
-        body.style.paddingRight = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
-        body.classList.add("_lock");
-
-        unlock = false;
-        setTimeout(function () {
-            unlock = true;
-        }, delay);
-    }
-}
 
 // *Tabs
 let tabs = document.querySelectorAll("._tabs");
@@ -475,101 +305,6 @@ if (spollersArray.length > 0) {
     Если нужно чтобы в блоке открывался только один спойлер к атрибуту data-spollers добавляем атрибут data-one-spoller
  */
 
-// *Gallery
-let gallery = document.querySelectorAll('._gallery');
-if (gallery) {
-    gallery_init();
-}
-function gallery_init() {
-    for (let index = 0; index < gallery.length; index++) {
-        const el = gallery[index];
-        lightGallery(el, {
-            counter: false,
-            selector: 'a',
-            download: false
-        });
-    }
-}
-
-// *Popups
-let popup_link = document.querySelectorAll('._popup-link');
-let popups = document.querySelectorAll('.popup');
-for (let index = 0; index < popup_link.length; index++) {
-    const el = popup_link[index];
-    el.addEventListener('click', function (e) {
-        if (unlock) {
-            let item = el.getAttribute('href').replace('#', '');
-            let video = el.getAttribute('data-video');
-            popup_open(item, video);
-        }
-        e.preventDefault();
-    })
-}
-for (let index = 0; index < popups.length; index++) {
-    const popup = popups[index];
-    popup.addEventListener("click", function (e) {
-        if (!e.target.closest('.popup__body')) {
-            popup_close(e.target.closest('.popup'));
-        }
-    });
-}
-function popup_open(item, video = '') {
-    let activePopup = document.querySelectorAll('.popup._active');
-    if (activePopup.length > 0) {
-        popup_close('', false);
-    }
-    let curent_popup = document.querySelector('.popup_' + item);
-    if (curent_popup && unlock) {
-        if (video != '' && video != null) {
-            let popup_video = document.querySelector('.popup_video');
-            popup_video.querySelector('.popup__video').innerHTML = '<iframe src="https://www.youtube.com/embed/' + video + '?autoplay=1"  allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-        }
-        if (!document.querySelector('.menu__body._active')) {
-            body_lock_add(500);
-        }
-        curent_popup.classList.add('_active');
-        history.pushState('', '', '#' + item);
-    }
-}
-function popup_close(item, bodyUnlock = true) {
-    if (unlock) {
-        if (!item) {
-            for (let index = 0; index < popups.length; index++) {
-                const popup = popups[index];
-                let video = popup.querySelector('.popup__video');
-                if (video) {
-                    video.innerHTML = '';
-                }
-                popup.classList.remove('_active');
-            }
-        } else {
-            let video = item.querySelector('.popup__video');
-            if (video) {
-                video.innerHTML = '';
-            }
-            item.classList.remove('_active');
-        }
-        if (!document.querySelector('.menu__body._active') && bodyUnlock) {
-            body_lock_remove(500);
-        }
-        history.pushState('', '', window.location.href.split('#')[0]);
-    }
-}
-let popup_close_icon = document.querySelectorAll('.popup__close,._popup-close');
-if (popup_close_icon) {
-    for (let index = 0; index < popup_close_icon.length; index++) {
-        const el = popup_close_icon[index];
-        el.addEventListener('click', function () {
-            popup_close(el.closest('.popup'));
-        })
-    }
-}
-document.addEventListener('keydown', function (e) {
-    if (e.code === 'Escape') {
-        popup_close();
-    }
-});
-
 // *Slide Toggle
 let _slideUp = (target, duration = 500) => {
     if (!target.classList.contains('_slide')) {
@@ -636,101 +371,12 @@ let _slideToggle = (target, duration = 500) => {
         return _slideUp(target, duration);
     }
 };
-// * Filter
-const filterLinks = document.querySelectorAll('.filter__link');
-const filterCards = document.querySelectorAll('.filter__card');
-if (filterCards.length > 0) {
-    for (let index = 0; index < filterLinks.length; index++) {
-        const filterLink = filterLinks[index];
-        filterLink.addEventListener('click', function (e) {
-            filterLinkClicked(filterLink);
-            filterLinksNoTouch(e.target, filterLinks);
-            filterBody(filterLink.dataset.filter, filterCards);
-        });
-    }
-    function filterLinkClicked(filterLink) {
-        const opened = document.querySelectorAll('.filter__link._opened');
-        if (opened) {
-            opened[0].className = opened[0].className.replace(' _opened', '');
-            filterLink.classList.add('_opened');
-        }
-    }
-
-    function filterLinksNoTouch(target, links) {
-        for (let index = 0; index < links.length; index++) {
-            const link = links[index];
-            if (link.dataset.filter && !link.classList.contains('_no-touch')) {
-                if (target.dataset.filter !== 'all') {
-                    link.classList.add('_no-touch');
-                } else if (target.dataset.filter.toLowerCase() === 'all') {
-                    link.classList.remove('_no-touch');
-                }
-            }
-            const linkAnim = document.querySelector('.filter__link._opened');
-            linkAnim.addEventListener('transitionend', function () {
-                link.classList.remove('_no-touch');
-            });
-        }
-    }
-
-    function filterBody(category, items) {
-        for (let index = 0; index < items.length; index++) {
-            const item = items[index];
-            const ItemFilter = item.classList.contains(category);
-            const ShowAll = category.toLowerCase() === 'all';
-            item.classList.add('_show')
-            if (!ShowAll) {
-                item.addEventListener('transitionend', function () {
-                    if (!ItemFilter) {
-                        item.classList.add('_hide')
-                        item.classList.remove('_show')
-                    } else if (ItemFilter) {
-                        item.classList.remove('_hide')
-                        item.classList.remove('_show')
-                    }
-                });
-
-            } else {
-                item.addEventListener('transitionend', function () {
-                    item.classList.remove('_show')
-                    item.classList.remove('_hide')
-                });
-            }
-        }
-    }
-}
-
-// *Scroll to top of the window
-const scrollTops = document.querySelectorAll('._scrolltop');
-if (scrollTops.length > 0) {
-    for (let index = 0; index < scrollTops.length; index++) {
-        const scrollTop = scrollTops[index];
-        scrollTop.addEventListener('click', function (e) {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            })
-            e.preventDefault();
-        });
-    }
-}
 
 //IsHidden
 function _is_hidden(el) {
     return (el.offsetParent === null)
 }
-// const optionInputs = document.querySelectorAll('.options__input');
-// if (optionInputs.length > 0) {
-//     optionInputs.forEach(option => {
-//         option.addEventListener('click', deletecheck);
-//         function deletecheck(e) {
-//             if (e.target.getAttribute("type") == "radio" && e.target.checked === false) {
-//                 // e.target.checked = false;
-//                 console.log('ddd');
-//             }
-//         }
-//     });
-// }
+
 let forms = document.querySelectorAll('form');
 if (forms.length > 0) {
 	for (let index = 0; index < forms.length; index++) {
@@ -1390,36 +1036,6 @@ function offset(el) {
 	return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
 }
 
-// *Animation on scroll
-const animItems = document.querySelectorAll('._anim-items');
-if (animItems.length > 0) {
-	window.addEventListener('scroll', animOnScroll);
-	function animOnScroll() {
-		for (let index = 0; index < animItems.length; index++) {
-			const animItem = animItems[index];
-			const animItemHeight = animItem.offsetHeight;
-			const animItemOffset = animItem.getBoundingClientRect().top + pageYOffset;
-			const animStart = 4;
-			let animItemPoint = window.innerHeight - animItemHeight / animStart;
-			if (animItemHeight > window.innerHeight) {
-				animItemPoint = window.innerHeight - window.innerHeight / animStart;
-			}
-
-			if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
-				animItem.classList.add('_anim')
-			} else {
-				if (!animItem.classList.contains('_anim-no-hide')) {
-					animItem.classList.remove('_anim');
-				}
-			}
-		}
-	}
-	setTimeout(() => {
-		animOnScroll();
-	}, 300);
-}
-
-// * Минни версия Динамического адаптива
 const parent_original = document.querySelector('.main-hello__body');
 const parent = document.querySelector('.page');
 const item = document.querySelector('.main-hello__offer');
@@ -1439,164 +1055,3 @@ function dinamicAdaptive(e) {
 const mediaWidth = window.matchMedia('(max-width: 1199.98px)');
 mediaWidth.addListener(dinamicAdaptive)
 dinamicAdaptive(mediaWidth); 
-
-
-// Dynamic Adapt v.1
-// HTML data-da="where(uniq class name),when(breakpoint),position(digi)"
-// e.x. data-da=".item,992,2"
-// Andrikanych Yevhen 2020
-// https://www.youtube.com/c/freelancerlifestyle
-
-function DynamicAdapt(type) {
-	this.type = type;
-}
-
-DynamicAdapt.prototype.init = function () {
-	const _this = this;
-	// массив объектов
-	this.оbjects = [];
-	this.daClassname = "_dynamic_adapt_";
-	// массив DOM-элементов
-	this.nodes = document.querySelectorAll("[data-da]");
-
-	// наполнение оbjects объктами
-	for (let i = 0; i < this.nodes.length; i++) {
-		const node = this.nodes[i];
-		const data = node.dataset.da.trim();
-		const dataArray = data.split(",");
-		const оbject = {};
-		оbject.element = node;
-		оbject.parent = node.parentNode;
-		оbject.destination = document.querySelector(dataArray[0].trim());
-		оbject.breakpoint = dataArray[1] ? dataArray[1].trim() : "767";
-		оbject.place = dataArray[2] ? dataArray[2].trim() : "last";
-		оbject.index = this.indexInParent(оbject.parent, оbject.element);
-		this.оbjects.push(оbject);
-	}
-
-	this.arraySort(this.оbjects);
-
-	// массив уникальных медиа-запросов
-	this.mediaQueries = Array.prototype.map.call(this.оbjects, function (item) {
-		return '(' + this.type + "-width: " + item.breakpoint + "px)," + item.breakpoint;
-	}, this);
-	this.mediaQueries = Array.prototype.filter.call(this.mediaQueries, function (item, index, self) {
-		return Array.prototype.indexOf.call(self, item) === index;
-	});
-
-	// навешивание слушателя на медиа-запрос
-	// и вызов обработчика при первом запуске
-	for (let i = 0; i < this.mediaQueries.length; i++) {
-		const media = this.mediaQueries[i];
-		const mediaSplit = String.prototype.split.call(media, ',');
-		const matchMedia = window.matchMedia(mediaSplit[0]);
-		const mediaBreakpoint = mediaSplit[1];
-
-		// массив объектов с подходящим брейкпоинтом
-		const оbjectsFilter = Array.prototype.filter.call(this.оbjects, function (item) {
-			return item.breakpoint === mediaBreakpoint;
-		});
-		matchMedia.addListener(function () {
-			_this.mediaHandler(matchMedia, оbjectsFilter);
-		});
-		this.mediaHandler(matchMedia, оbjectsFilter);
-	}
-};
-
-DynamicAdapt.prototype.mediaHandler = function (matchMedia, оbjects) {
-	if (matchMedia.matches) {
-		for (let i = 0; i < оbjects.length; i++) {
-			const оbject = оbjects[i];
-			оbject.index = this.indexInParent(оbject.parent, оbject.element);
-			this.moveTo(оbject.place, оbject.element, оbject.destination);
-		}
-	} else {
-		for (let i = 0; i < оbjects.length; i++) {
-			const оbject = оbjects[i];
-			if (оbject.element.classList.contains(this.daClassname)) {
-				this.moveBack(оbject.parent, оbject.element, оbject.index);
-			}
-		}
-	}
-};
-
-// Функция перемещения
-DynamicAdapt.prototype.moveTo = function (place, element, destination) {
-	element.classList.add(this.daClassname);
-	if (place === 'last' || place >= destination.children.length) {
-		destination.insertAdjacentElement('beforeend', element);
-		return;
-	}
-	if (place === 'first') {
-		destination.insertAdjacentElement('afterbegin', element);
-		return;
-	}
-	destination.children[place].insertAdjacentElement('beforebegin', element);
-}
-
-// Функция возврата
-DynamicAdapt.prototype.moveBack = function (parent, element, index) {
-	element.classList.remove(this.daClassname);
-	if (parent.children[index] !== undefined) {
-		parent.children[index].insertAdjacentElement('beforebegin', element);
-	} else {
-		parent.insertAdjacentElement('beforeend', element);
-	}
-}
-
-// Функция получения индекса внутри родителя
-DynamicAdapt.prototype.indexInParent = function (parent, element) {
-	const array = Array.prototype.slice.call(parent.children);
-	return Array.prototype.indexOf.call(array, element);
-};
-
-// Функция сортировки массива по breakpoint и place 
-// по возрастанию для this.type = min
-// по убыванию для this.type = max
-DynamicAdapt.prototype.arraySort = function (arr) {
-	if (this.type === "min") {
-		Array.prototype.sort.call(arr, function (a, b) {
-			if (a.breakpoint === b.breakpoint) {
-				if (a.place === b.place) {
-					return 0;
-				}
-
-				if (a.place === "first" || b.place === "last") {
-					return -1;
-				}
-
-				if (a.place === "last" || b.place === "first") {
-					return 1;
-				}
-
-				return a.place - b.place;
-			}
-
-			return a.breakpoint - b.breakpoint;
-		});
-	} else {
-		Array.prototype.sort.call(arr, function (a, b) {
-			if (a.breakpoint === b.breakpoint) {
-				if (a.place === b.place) {
-					return 0;
-				}
-
-				if (a.place === "first" || b.place === "last") {
-					return 1;
-				}
-
-				if (a.place === "last" || b.place === "first") {
-					return -1;
-				}
-
-				return b.place - a.place;
-			}
-
-			return b.breakpoint - a.breakpoint;
-		});
-		return;
-	}
-};
-
-const da = new DynamicAdapt("max");
-da.init();
