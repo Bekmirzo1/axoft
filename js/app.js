@@ -504,7 +504,6 @@ if (link) {
 		el.addEventListener('click', function (e) {
 			if (document.querySelector('.aside._active')) {
 				menu_close();
-				// body_lock_remove(500);
 			}
 			const target_block_class = el.getAttribute('href').replace('#', '');
 			const target_block = document.querySelector('.' + target_block_class);
@@ -550,11 +549,14 @@ if (goto_links) {
 		});
 	}
 }
+
 function _goto(target_block) {
-	window.scrollTo({
-		top: offset(target_block).top - 50,
-		behavior: "smooth"
+	const moveTo = new MoveTo({
+		tolerance: 50,
+		duration: 800,
+		easing: 'easeOutQuart'
 	});
+	moveTo.move(target_block);
 }
 
 // *accurate page left/top coordinates
